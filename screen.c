@@ -23,8 +23,12 @@ void clearScreen(void){
 
 void displayBar(double rms, int col){
 	int i;
-	for(i=0; i<rms/100; i++){
-		gotoXY(30-(i+2), col);
+	for(i=0; i<rms/125; i++){
+		if(i==28) break;
+		if(i<10) setFGcolor(GREEN);
+		else if(i<20) setFGcolor(YELLOW);
+		else setFGcolor(RED);
+		gotoXY(30-i, col);
 #ifndef UNICODE
 		printf("*");
 #else

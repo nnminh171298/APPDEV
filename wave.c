@@ -82,21 +82,22 @@ void displayWAVdata(short int d[]){
 		}
 		sum2000 += sum200;
 		if(i%10==9){
-			Leqf[i/10] = sqrt(sum2000/(SAMPLE_RATE/8));
+			Leqf[i/10] = 20*log10(sqrt(sum2000/(SAMPLE_RATE/8)));
 			sum2000 = 0.0;
 		}
 		rms200 = sqrt(sum200/(SAMPLE_RATE/80));
-		rms200 = 20*log10(rms200);
 		if(rms200 > max200)
 			max200 = rms200;
 		if(rms200 < min200)
 			min200 = rms200;
 #ifdef DEBUG		//conditional compiling
+		rms200 = 20*log10(rms200);
 		printf("%2d.%6.2f\t", i, rms200);
 		if(i%10==9)
 			printf("\n");
 #else
 		displayBar(rms200, i+1);
+		sum200 = 0.0;
 #endif
 	}
 #ifdef DEBUG

@@ -34,7 +34,8 @@ int main(int argc, char *argv[]){
 		displayWAVdata(sa);
 		fclose(fp);
 	}
-	printf("Do you want to generate a test tone? (1: Yes, 0: No)\n");
+
+/*	printf("Do you want to generate a test tone? (1: Yes, 0: No)\n");
 	scanf("%d", &answer);
-	if(answer == 1) testTone(1000, 5);
+	if(answer == 1) testTone(1000, 5);*/
 }
