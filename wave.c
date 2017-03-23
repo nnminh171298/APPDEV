@@ -1,6 +1,7 @@
 // this program will open a wave file, and display WAV header info
 #include "wave.h"	// double quotation marks are used for user defined header
 #include "screen.h"
+#include "comm.h"
 #include <stdio.h>
 #include <math.h>
 
@@ -72,18 +73,36 @@ void printID(char id[]){
 
 void displayWAVdata(short int d[]){
 	int i, j;
-	double sum200, rms200;
+	double sum200 = 0.0, rms200, max200 = 0.0, min200 = 20000;
+	double Leqf[8], sum2000 = 0.0;
 	for(i=0; i<80; i++){
-		sum200 = 0.0;
 		for(j=0; j<SAMPLE_RATE/80; j++){
 			sum200 += (*d)*(*d);
 			d++;
 		}
+		sum2000 += sum200;
+		if(i%10==9){
+			Leqf[i/10] = sqrt(sum2000/(SAMPLE_RATE/8));
+			sum2000 = 0.0;
+		}
 		rms200 = sqrt(sum200/(SAMPLE_RATE/80));
+		rms200 = 20*log10(rms200);
+		if(rms200 > max200)
+			max200 = rms200;
+		if(rms200 < min200)
+			min200 = rms200;
 #ifdef DEBUG		//conditional compiling
-		printf("%d.%10.2f ", i, rms200);
+		printf("%2d.%6.2f\t", i, rms200);
+		if(i%10==9)
+			printf("\n");
 #else
 		displayBar(rms200, i+1);
 #endif
 	}
+#ifdef DEBUG
+	printf("MAX = %.2f, MIN = %.2f.\n", max200, min200);
+#endif
+#ifdef COMM
+	send_data_curl(Leqf);
+#endif
 }
