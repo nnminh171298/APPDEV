@@ -23,8 +23,8 @@ typedef struct {
 #define PI 3.141592654
 
 // function prototypes
-void displayWAVHDR(WAVHDR hdr);
+void displayWAVHDR(WAVHDR hdr);				// display the header of the .wav file
 void printID(char *);
-void testTone(int freq, double duration);
+void testTone(int freq, double duration);	// create a 1s test tone
 void fillID(const char *, char []);
-void displayWAVdata(short int []);
+void displayWAVdata(short int []);			// display the data of the .wav file
