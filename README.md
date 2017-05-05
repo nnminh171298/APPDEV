@@ -1,11 +1,8 @@
 https://github.com/nnminh171298/APPDEV
 # This is my readme file
 
-Rasberry Pi acoustic sensor project
-.
-This project will turn a rasberry Pi 3 into an acoustic sensor
-
-.
+Rasberry Pi acoustic sensor project.
+This project will turn a rasberry Pi 3 into an acoustic sensor.
 
 Table of Content
 1. Configuration instructions
