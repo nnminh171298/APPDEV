@@ -71,7 +71,7 @@ The project contains following files:
 --comm.h:	the header file of comm.c.
 --main.c:	contains main() function.
 --sound.php:	the server page to receive data.
---show.html:	the server page visualizes data.
+--display.php:	the server page visualizes data.
 
 5. Coppyright and licensing information
 This is a open source project. No coppyright or licensing.
